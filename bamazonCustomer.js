@@ -48,3 +48,24 @@ var connection = mysql.createConnection({
         }
     });
   }
+  function searchById() {
+    connection.query("SELECT id FROM products", function(err, res) {
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++) {
+          console.log(res[i].id + " | " + res[i].product + " | " + res[i].price);
+        }
+        console.log("-----------------------------------");
+        start();
+      });
+  }
+
+//   function amountBought() {
+//     connection.query("SELECT * FROM products", function(err, res) {
+//         if (err) throw err;
+//         for (var i = 0; i < res.length; i++) {
+//           console.log(res[i].id + " | " + res[i].product + " | " + res[i].price);
+//         }
+//         console.log("-----------------------------------");
+//         start();
+//       });
+//   }
