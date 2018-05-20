@@ -17,11 +17,18 @@ var connection = mysql.createConnection({
   });
   
   connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId + "\n");
-    start();
+    connection.query("SELECT * FROM products", function(err, res) {
+        for (var i = 0; i < res.length; i++) {
+          console.log(res[i].id + " | " + res[i].product + " | " + res[i].department + " | " + res[i].price + " | " + res[i].stock);
+        }
+        console.log("-----------------------------------");
+      });
   });
 
-  function start() {
-      
-  }
+//   function start() {
+//     prompt.inquirer([{
+//         name: "action",
+//         message: "Search Product By Id:",
+//         type: "list"
+//     }]).then(function (){});
+//   }
